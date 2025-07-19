@@ -1,0 +1,1 @@
+ROOT_PATH = "c:/Users/Тимур/Documents/Task Tracker CLI"
