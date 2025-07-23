@@ -1,21 +1,19 @@
 from modules.FileHandler import FileHandler
+from modules.CommandHandler import CommandHandler
 
-file_handler = FileHandler()
+class Main:
+    def __init__(self):
+        self.file_handler = FileHandler()
+        self.command_handler = CommandHandler()
 
-def handle_user_input(user_input: str):
-    user_input = user_input.strip()
-    command = user_input.split(" ")[0]
+        self.user_input = input("Введите команду: ")
 
-    file_handler.fsdf()
+    def _handle_user_input(self):
+        user_input = self.user_input.strip()
+        self.command_handler.handle(command=user_input)
 
-    print(f"Command: {command}")
+    def run(self):
+        self._handle_user_input()
 
-def show_error(msg: str):
-    if isinstance(msg, str):
-        print(f"Ошибка: {msg}")
-    else:
-        print(f"Error 500")
-
-user_input = input("Введите команду: ")
-
-handle_user_input(user_input)
+app = Main()
+app.run()
