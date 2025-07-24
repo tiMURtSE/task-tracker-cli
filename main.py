@@ -1,9 +1,7 @@
-from modules.FileHandler import FileHandler
 from modules.CommandHandler import CommandHandler
 
 class Main:
     def __init__(self):
-        self.file_handler = FileHandler()
         self.command_handler = CommandHandler()
 
         self.user_input = input("Введите команду: ")
