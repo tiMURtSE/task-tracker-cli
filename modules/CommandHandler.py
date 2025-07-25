@@ -44,8 +44,22 @@ class CommandHandler:
                     id = int(rest[0])
                     description = " ".join(rest[1:])
 
-                    self.storage.update_tasks(id, description)
+                    self.storage.update_task(id, description)
                 else:
                     raise Exception("Что-то не так в команда 'update'.")
+            case "mark-in-progress":
+                if len(rest) == 1 and isinstance(int(rest[0]), int):
+                     id = int(rest[0])
+
+                     self.storage.update_status(id, "in-progress")
+                else:
+                    raise Exception("Что-то не так в команда 'mark-in-progress'.")
+            case "mark-done":
+                if len(rest) == 1 and isinstance(int(rest[0]), int):
+                     id = int(rest[0])
+
+                     self.storage.update_status(id, "done")
+                else:
+                    raise Exception("Что-то не так в команда 'mark-done'.")
             case _:
                 print("Ошибка при вводе команды.")

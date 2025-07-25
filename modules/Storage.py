@@ -85,12 +85,22 @@ class Storage:
                 
         self._print_tasks(filtered_tasks)
 
-    def update_tasks(self, id: int, description: str):
+    def update_task(self, id: int, description: str):
         tasks = self._get_tasks()
 
         for task in tasks:
             if int(task["id"]) == id:
                 task["description"] = description
+                task["updated_at"] = datetime.now().isoformat()
+
+        self._update_tasks(tasks)
+
+    def update_status(self, id: int, status: str):
+        tasks = self._get_tasks()
+
+        for task in tasks:
+            if int(task["id"]) == id:
+                task["status"] = status
                 task["updated_at"] = datetime.now().isoformat()
 
         self._update_tasks(tasks)
