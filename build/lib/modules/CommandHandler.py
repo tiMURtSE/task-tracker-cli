@@ -5,18 +5,19 @@ class CommandHandler:
     def __init__(self):
         self.storage = Storage()
 
-    # def _check_description(self, rest: list[str]):
-    #     pattern = r'^"[^"]+"$'
+    def _check_description(self, rest: list[str]):
+        pattern = r'^"[^"]+"$'
 
-    #     return bool(re.match(pattern, " ".join(rest)))
+        return bool(re.match(pattern, " ".join(rest)))
 
-    def handle(self, user_input: list[str]):
-        command, *rest = user_input[1:]
+    def handle(self, command: str):
+        splitted_command = command.split(" ")
+        command, *rest = splitted_command
 
         match command:
             case "add":
-                if len(rest) == 1:
-                    description = rest[0]
+                if self._check_description(rest):
+                    description = " ".join(rest)
                     self.storage.add_new_task(description)
                     
                     print("*выполняется команда add*")
@@ -39,9 +40,9 @@ class CommandHandler:
                 else:
                     raise Exception("Что-то не так в команда 'list'.")
             case "update":
-                if isinstance(int(rest[0]), int) and len(rest) == 2:
+                if isinstance(int(rest[0]), int) and self._check_description(rest[1:]):
                     id = int(rest[0])
-                    description = rest[1]
+                    description = " ".join(rest[1:])
 
                     self.storage.update_task(id, description)
                 else:

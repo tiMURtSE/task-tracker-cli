@@ -12,6 +12,8 @@ class Main:
         else:
             self.user_input = input("Введите команду: ")
 
+        print(sys.argv)
+
     def _handle_user_input(self):
         user_input = self.user_input.strip()
         self.command_handler.handle(command=user_input)
@@ -19,6 +21,9 @@ class Main:
     def run(self):
         self._handle_user_input()
 
-if __name__ == "__main__":
+def main():
     app = Main()
     app.run()
+
+if __name__ == "__main__":
+    main()
